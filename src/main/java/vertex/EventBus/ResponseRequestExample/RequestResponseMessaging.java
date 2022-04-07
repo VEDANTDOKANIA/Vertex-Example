@@ -11,8 +11,10 @@ public class RequestResponseMessaging extends AbstractVerticle {
   private static final Logger log = LoggerFactory.getLogger(Verticle.class);
   public static void main(String[] args) {
     var vertx = Vertx.vertx();
-    vertx.deployVerticle(new RequestVerticle());
-    vertx.deployVerticle(new ResponseVerticle());
+    vertx.deployVerticle(new ResponseVerticle()).onComplete(Handler1 ->{
+      vertx.deployVerticle(new RequestVerticle());
+    });
+
   }
   @Override
   public  void start(Promise<Void> startPromise) throws Exception{

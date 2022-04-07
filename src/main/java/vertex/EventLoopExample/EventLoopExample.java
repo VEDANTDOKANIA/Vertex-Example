@@ -17,11 +17,13 @@ public class EventLoopExample extends AbstractVerticle {
       new VertxOptions().setMaxEventLoopExecuteTime(50000).
         setMaxEventLoopExecuteTimeUnit(TimeUnit.MILLISECONDS).
         setBlockedThreadCheckInterval(1).
-        setBlockedThreadCheckIntervalUnit(TimeUnit.SECONDS)
+        setBlockedThreadCheckIntervalUnit(TimeUnit.SECONDS).setEventLoopPoolSize(36)
     );
     vertx.deployVerticle(new EventLoopExample(),new DeploymentOptions());
     for (int i =0 ;i<5000 ;i++) {
-      vertx.deployVerticle(new verticleA(),new DeploymentOptions().setWorker(true));
+      vertx.deployVerticle("vertex.VerticlesExample.verticleA",res ->{
+
+      });
     }
   }
 
