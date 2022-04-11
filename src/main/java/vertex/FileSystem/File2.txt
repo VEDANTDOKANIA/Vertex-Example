@@ -1,0 +1,5 @@
+My name isvedantt123s are named xxxBlocking and return the results or throw exceptions directly.
+In My name is vedant123g on the operating system and file system, some of the potentially blocking operations
+can return quickly, which is why we provide them, but it’s highly recommended that you test how long they
+take to return in your particular application before using them from an event loop, so as not to break the Golden Rule.
+vedantvedant
