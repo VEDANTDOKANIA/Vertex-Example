@@ -11,7 +11,7 @@ import java.nio.file.OpenOption;
 public class AsyncFIleExample {
   public static void main(String[] args) {
     Vertx vertx= Vertx.vertx();
-    OpenOptions openOptions = new OpenOptions();
+    OpenOptions openOptions = new OpenOptions().setAppend(true);
     FileSystem fileSystem = vertx.fileSystem();
 
     // Async File write

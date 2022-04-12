@@ -1,6 +1,10 @@
 package vertex.Buffers;
 
 import io.vertx.core.buffer.Buffer;
+import io.vertx.core.json.JsonObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BufferExample {
   public static void main(String[] args) {
@@ -17,6 +21,9 @@ public class BufferExample {
     buffer.appendInt(16);*/
     System.out.println(buffer.getInt(0));
     System.out.println(buffer.getString(4,buffer.length()));
+
+    JsonObject jsonObject = new JsonObject();
+
 
    /* byte   aByte   = buffer.getByte  ( 0); // Byte - 2
     short  aShort  = buffer.getShort ( 2);  // short 2
