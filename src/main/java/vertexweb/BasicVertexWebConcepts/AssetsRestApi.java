@@ -1,6 +1,7 @@
 package vertexweb.BasicVertexWebConcepts;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.http.HttpMethod;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
@@ -16,11 +17,11 @@ public class AssetsRestApi extends AbstractVerticle {
   public static final List<String> Assets = Arrays.asList("AMPl","NTFl","TSLA","Goog","Faceb");
 
    public static void attach(Router parent){
-   parent.get("/assets").handler(context ->{
+   parent.route(HttpMethod.POST,"/assets").handler(context ->{
       final JsonArray jsonArray = new JsonArray();
 
       Assets.stream().map(Asset::new).forEach(jsonArray::add);
-      log.info("Path {} responds with {}"+context.normalizedPath(),jsonArray.encode());
+      log.info("Path {} responds with {}",context.normalizedPath(),jsonArray.encode());
       context.response().end(jsonArray.toBuffer());
     });
   }

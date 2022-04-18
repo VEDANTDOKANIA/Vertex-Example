@@ -7,6 +7,7 @@ import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.BodyHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import vertex.VerticlesExample.Verticle;
@@ -33,6 +34,8 @@ public class MainVerticle extends AbstractVerticle {
   @Override
   public void start(Promise<Void> startPromise) throws Exception {
     final Router router = Router.router(vertx);
+    router.route().handler(BodyHandler.create());
+    ExampleApi.attach(router);
     AssetsRestApi.attach(router);
     QuotesRestApi.attach(router);
     WatchListRestApi.attach(router);

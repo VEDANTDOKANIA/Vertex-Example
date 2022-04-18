@@ -26,13 +26,17 @@ public class WatchListRestApi {
           new JsonObject().put("message","watchlist for account"+accountId+"not available")
             .put("path",context.normalizedPath()).toBuffer());
           return;
-
-
-
       }
       context.response().end(watchlist.get().toJsonObject().toBuffer());
     });
-    router.put(path).handler(context ->{});
+    router.put(path).handler(context ->{
+      var accountId = context.pathParam("accountId");
+      log.debug("{} for account {}",context.normalizedPath(),accountId);
+     var json = context.getBodyAsJson();
+     var watchlist = json.mapTo(Watchlist.class);
+     watchlistPerAccount.put(UUID.fromString(accountId),watchlist);
+     context.response().end(json.toBuffer());
+    });
     router.delete(path).handler(context ->{});
 
   }
